@@ -1,78 +1,64 @@
-const photos=[
- {src:"https://picsum.photos/id/1015/1400/1000",caption:"River bend, Norway",region:"Europe Coast",place:"Lofoten"},
- {src:"https://picsum.photos/id/1016/1000/1400",caption:"Canyon light, Arizona",region:"Americas Desert",place:"Grand Canyon"},
- {src:"https://picsum.photos/id/1018/1000/1400",caption:"Pine ridge, Slovenia",region:"Europe",place:"Julian Alps"},
- {src:"https://picsum.photos/id/1021/1000/1400",caption:"Lake at dusk, Chile",region:"Americas Coast",place:"Patagonia"},
- {src:"https://picsum.photos/id/1024/1000/1400",caption:"Old town rooftops, Portugal",region:"Europe Coast",place:"Lisbon"},
- {src:"https://picsum.photos/id/1035/1000/1400",caption:"Fog over the hills, Scotland",region:"Europe",place:"Isle of Skye"},
- {src:"https://picsum.photos/id/1039/1400/1000",caption:"Harbor morning, Croatia",region:"Europe Coast",place:"Hvar"},
- {src:"https://picsum.photos/id/1043/1000/1400",caption:"Market stall, Vietnam",region:"Asia",place:"Hanoi"},
- {src:"https://picsum.photos/id/1044/1000/1400",caption:"Terraced fields, Bali",region:"Asia",place:"Ubud"},
- {src:"https://picsum.photos/id/1050/1000/1400",caption:"Desert road, Namibia",region:"Desert",place:"Sossusvlei"},
- {src:"https://picsum.photos/id/1056/1000/1400",caption:"Snow line, Japan",region:"Asia",place:"Hokkaido"},
- {src:"https://picsum.photos/id/1074/1000/1400",caption:"Coastal cliffs, Ireland",region:"Europe Coast",place:"Moher"},
+const sidebar = document.getElementById("sidebar");
+document.getElementById("navToggle")?.addEventListener("click",()=>sidebar.classList.toggle("open"));
+document.querySelectorAll(".nav-link").forEach(a=>a.addEventListener("click",()=>sidebar.classList.remove("open")));
+
+// Projects data - auto inject
+const projects = [
+ {title:"Sri Lanka Tourism Website",desc:"Imagery-first destination discovery site, fully responsive.",cat:"web",tags:["HTML","CSS"],link:"#"},
+ {title:"Malcolm Lismore Photography",desc:"Full-stack photographer's site with wildlife, landscape, weddings.",cat:"web",tags:["PHP","MySQL"],link:"#"},
+ {title:"LensArt Photography",desc:"Dark-themed portfolio with dynamic category filter.",cat:"web",tags:["HTML","PHP"],link:"#"},
+ {title:"TravelBuddies.com - Courier",desc:"Courier tracking platform with role-based login (Figma).",cat:"design",tags:["Figma","UX"],link:"#"},
+ {title:"EVC / EPN Mobile App",desc:"Mobile concept with eVideo discovery on dark canvas.",cat:"design",img:"images/images (3).jpg",tags:["Figma","Mobile"],link:"#"},
+ {title:"Enterprise Network - Alliance Health",desc:"Two-site LAN/WAN design with VLANs, wireless, server room.",cat:"network",tags:["Packet Tracer"],link:"#"},
+ {title:"Multi-Department VLAN",desc:"7-VLAN segmented office with OSPF routing.",cat:"network",tags:["OSPF","VLAN"],link:"#"},
+ {title:"Production Management System",desc:"ER → UML → Use-case & flowcharts.",cat:"design",tags:["draw.io","UML"],link:"#"},
+ {title:"IoT Smart Greenhouse",desc:"ESP32 + DHT22 automation via MQTT, Wokwi simulated.",cat:"network",tags:["ESP32","MQTT"],link:"#"},
 ];
-const gallery=document.getElementById('gallery');
-const lightbox=document.getElementById('lightbox');
-const lbImg=document.getElementById('lbImg');
-const lbCaption=document.getElementById('lbCaption');
-const lbCounter=document.getElementById('lbCounter');
-let current=0;
-let filtered=photos;
 
-function render(list=photos){
-  gallery.innerHTML='';
-  filtered=list;
-  list.forEach((p,i)=>{
-    const realIndex=photos.indexOf(p);
-    const card=document.createElement('div');
-    card.className='card';
-    card.innerHTML=`
-      <img src="${p.src}" loading="lazy" alt="${p.caption}">
-      <div class="meta">
-        <div class="top"><span class="tag">${p.place}</span><button class="dl">⬇</button></div>
-        <div class="bottom"><h3>${p.caption}</h3><p>${p.region}</p></div>
-      </div>`;
-    card.querySelector('.dl').addEventListener('click',e=>{e.stopPropagation();download(p.src,p.caption)});
-    card.addEventListener('click',()=>open(realIndex));
-    gallery.appendChild(card);
-  });
+const grid = document.getElementById("projectGrid");
+function render(list){
+ grid.innerHTML="";
+ list.forEach(p=>{
+   const imgId = Math.floor(Math.random()*30)+100;
+   grid.innerHTML+=`
+   <article class="project-card" data-cat="${p.cat}">
+     <div class="p-img"><img src="https://picsum.photos/id/${imgId}/600/400" loading="lazy"></div>
+     <div class="p-info">
+       <h3>${p.title}</h3>
+       <p>${p.desc}</p>
+       <div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join("")}</div>
+       <div class="p-foot"><a href="${p.link}" target="_blank">View →</a><span style="font-size:10px;opacity:.4;text-transform:uppercase">${p.cat}</span></div>
+     </div>
+   </article>`;
+ });
 }
-function open(idx){current=idx;show(current);lightbox.classList.add('open');document.body.style.overflow='hidden'}
-function close(){lightbox.classList.remove('open');document.body.style.overflow=''}
-function show(idx){
-  const p=photos[idx];
-  lbImg.src=p.src;lbCaption.textContent=p.caption+' — '+p.place;
-  lbCounter.textContent=(idx+1)+' / '+photos.length;
-}
-function next(){current=(current+1)%photos.length;show(current)}
-function prev(){current=(current-1+photos.length)%photos.length;show(current)}
-function download(url,name){
-  const safe=name.replace(/[^a-z0-9]/gi,'-').toLowerCase()+'.jpg';
-  fetch(url).then(r=>r.blob()).then(b=>{
-    const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=safe;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u);
-  }).catch(()=>window.open(url,'_blank'));
-}
-function downloadAll(){filtered.forEach((p,i)=>setTimeout(()=>download(p.src,p.caption),i*400))}
+render(projects);
 
-document.getElementById('lbClose').onclick=close;
-document.getElementById('lbNext').onclick=next;
-document.getElementById('lbPrev').onclick=prev;
-document.getElementById('lbDownload').onclick=()=>download(photos[current].src,photos[current].caption);
-lightbox.addEventListener('click',e=>{if(e.target===lightbox)close()});
-document.addEventListener('keydown',e=>{
-  if(!lightbox.classList.contains('open'))return;
-  if(e.key==='Escape')close();if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev();
+// filter
+document.querySelectorAll(".chip").forEach(ch=>{
+ ch.addEventListener("click",()=>{
+   document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
+   ch.classList.add("active");
+   const f=ch.dataset.filter;
+   if(f==="all") render(projects);
+   else render(projects.filter(p=>p.cat===f));
+ });
 });
 
-// Filters
-document.querySelectorAll('.chip').forEach(ch=>{
-  ch.addEventListener('click',()=>{
-    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-    ch.classList.add('active');
-    const f=ch.dataset.filter;
-    if(f==='all') render(photos);
-    else render(photos.filter(p=>p.region.includes(f)));
-  });
-});
-render(photos);
+// scroll spy + reveal
+const sections = document.querySelectorAll(".section");
+const navLinks = document.querySelectorAll(".nav-link");
+const obs = new IntersectionObserver((entries)=>{
+ entries.forEach(e=>{
+   if(e.isIntersecting){
+     const id=e.target.id;
+     navLinks.forEach(l=>l.classList.toggle("active",l.dataset.section===id));
+   }
+ });
+},{rootMargin:"-40% 0px -55% 0px"});
+sections.forEach(s=>obs.observe(s));
+
+const reveal = new IntersectionObserver((entries)=>{
+ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in-view"); reveal.unobserve(e.target);} });
+},{threshold:0.12});
+sections.forEach(s=>reveal.observe(s));
