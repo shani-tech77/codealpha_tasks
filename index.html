@@ -3,45 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RECKON — Pocket Calculator</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<title>Sonder-- Every Frame a Life </title>
+<link href="wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<!--css link-->
 <link rel="stylesheet" href="style.css">
+
+
 </head>
 <body>
-  <main class="calculator" id="calculator">
-    <p class="brand">RECKON · 100</p>
-    <div class="screen">
-      <div class="history" id="history">&nbsp;</div>
-      <div class="display" id="display">0</div>
+
+<div class="topbar">
+  <div class="logo">SONDER <span>field notes</span></div>
+  <div class="nav-links"><span>12 Frames</span><span>10 Countries</span><span>2024 — 2026</span></div>
+  <button class="btn-pill" onclick="downloadAll()">Download All</button>
+</div>
+
+<section class="hero">
+  <h1><b>Every stranger</b> has a <i>story.</i></h1>
+  <div class="hero-right">
+    <p>Twelve frames from ten countries — shot on dusty lenses, late buses, and early ferries. No filters, just light.</p>
+    <div class="stats">
+      <div class="stat"><b>12</b><span>Photographs</span></div>
+      <div class="stat"><b>4</b><span>Continents</span></div>
+      <div class="stat"><b>∞</b><span>Stories</span></div>
     </div>
-    <div class="keys">
-      <button class="key key-fn" data-action="clear">AC</button>
-      <button class="key key-fn" data-action="backspace">⌫</button>
-      <button class="key key-fn" data-action="percent">%</button>
-      <button class="key key-op" data-op="÷">÷</button>
+  </div>
+</section>
 
-      <button class="key key-num" data-num="7">7</button>
-      <button class="key key-num" data-num="8">8</button>
-      <button class="key key-num" data-num="9">9</button>
-      <button class="key key-op" data-op="×">×</button>
+<div class="filters" id="filters">
+  <button class="chip active" data-filter="all">All Places</button>
+  <button class="chip" data-filter="Europe">Europe</button>
+  <button class="chip" data-filter="Asia">Asia</button>
+  <button class="chip" data-filter="Americas">Americas</button>
+  <button class="chip" data-filter="Desert">Desert</button>
+  <button class="chip" data-filter="Coast">Coast</button>
+</div>
 
-      <button class="key key-num" data-num="4">4</button>
-      <button class="key key-num" data-num="5">5</button>
-      <button class="key key-num" data-num="6">6</button>
-      <button class="key key-op" data-op="−">−</button>
+<main class="gallery" id="gallery"></main>
 
-      <button class="key key-num" data-num="1">1</button>
-      <button class="key key-num" data-num="2">2</button>
-      <button class="key key-num" data-num="3">3</button>
-      <button class="key key-op" data-op="+">+</button>
+<div class="footer">
+  <span>SONDER © 2026 — Shot on iPhone & Contax T2</span>
+  <span>12 Frams |Tap to expand | ESC to close</span>
+</div>
 
-      <button class="key key-num key-zero" data-num="0">0</button>
-      <button class="key key-num" data-action="decimal">.</button>
-      <button class="key key-equals" data-action="equals">=</button>
+<div class="lightbox" id="lightbox">
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <div class="lb-ui">
+    <button class="lb-close" id="lbClose">×</button>
+    <button class="lb-prev" id="lbPrev">‹</button>
+    <button class="lb-next" id="lbNext">›</button>
+    <div class="lb-bar">
+      <span id="lbCaption">Caption</span>
+      <span class="counter" id="lbCounter">1 / 12</span>
+      <button class="download" id="lbDownload">⬇ Download</button>
     </div>
-    <p class="hint">Keyboard: numbers, + − * /, Enter, Backspace, Esc.</p>
-  </main>
-  <script src="script.js"></script>
+  </div>
+</div>
+
+<!--js-->
+<script src="script.js"></script>
 </body>
 </html>
-  
