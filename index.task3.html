@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shanika Madushani Jayarathna — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="mobile-bar">
+  <span>SMJ — Portfolio</span>
+  <button id="navToggle">☰</button>
+</div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar__top">
+    <div class="mark">SMJ</div>
+    <div class="mark-sub">Kottawa · SL<br>Open to Internships</div>
+  </div>
+  <ul class="sidebar__links">
+    <li><a href="#about" class="nav-link active" data-section="about">00 About</a></li>
+    <li><a href="#skills" class="nav-link" data-section="skills">01 Skills</a></li>
+    <li><a href="#experience" class="nav-link" data-section="experience">02 Experience</a></li>
+    <li><a href="#education" class="nav-link" data-section="education">03 Education</a></li>
+    <li><a href="#projects" class="nav-link" data-section="projects">04 Projects</a></li>
+    <li><a href="#contact" class="nav-link" data-section="contact">05 Contact</a></li>
+  </ul>
+  <div class="sidebar__foot">
+    <span class="dot"></span> Available for Frontend Roles
+    <p>© 2026 Shanika M. Jayarathna</p>
+  </div>
+</nav>
+
+<main class="content">
+  <section id="about" class="section hero">
+    <div class="eyebrow">Software Engineering Undergraduate · 2026</div>
+    <h1>Shanika Madushani<br><i>Jayarathna</i><span>_</span></h1>
+    <p class="hero__role">Frontend Development · Networking & Database Design · Building systems end-to-end</p>
+    <p class="hero__bio">
+      Software Engineering undergraduate at Canterbury Christ Church University, currently building my journey into Full-Stack Development.
+
+I hold a Pearson BTEC Level 5 HND in Computing Technology (Merit) from ESOFT Metro Campus, and I've gained hands-on experience through a remote Frontend Development internship, working with HTML, CSS, and JavaScript. Alongside frontend skills, I'm expanding into backend development with C#, SQL, and networking fundamentals (TCP/IP, LAN/Wi-Fi).
+
+I'm also passionate about leveraging AI tools (like Copilot, Claude & ChatGPT) to work smarter and build better solutions — combining traditional coding skills with modern AI-assisted development practices.
+    </p>
+    <div class="hero__stats">
+      <div><b>12+</b><span>Projects Built</span></div>
+      <div><b>3</b><span>Domains · Web / Network / DB</span></div>
+      <div><b>2021→</b><span>Hands-on Experience</span></div>
+    </div>
+    <div class="hero__actions">
+      <a href="#projects" class="btn btn--dark">Explore projects →</a>
+      <a href="mailto:shanijayarathna812@gmail.com" class="btn btn--line">Get in touch</a>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="section__head"><h2>01 — Skills</h2><p>Stack I work with daily</p></div>
+    <div class="skills-grid">
+      <div class="skill-card"><h3>Web Development</h3><div class="tags"><span>HTML & CSS</span><span>JavaScript</span><span>PHP</span><span>C#</span><span>Python</span></div></div>
+      <div class="skill-card"><h3>Databases & Design</h3><div class="tags"><span>SQL</span><span>ER Modelling</span><span>UML</span><span>Figma UX/UI</span></div></div>
+      <div class="skill-card"><h3>Networking</h3><div class="tags"><span>TCP/IP</span><span>LAN / Wi-Fi</span><span>VLAN & OSPF</span><span>Cisco Packet Tracer</span></div></div>
+      <div class="skill-card"><h3>Tools & Core</h3><div class="tags"><span>Power BI</span><span>Git & GitHub</span><span>MS 365</span><span>Documentation</span></div></div>
+    </div>
+  </section>
+
+  <section id="experience" class="section">
+    <div class="section__head"><h2>02 — Experience</h2></div>
+    <div class="timeline">
+      <div class="t-item"><span class="t-date">2021 — 2022</span><h3>IT Assistant · University of Moratuwa</h3><p>First-line support, digitized filing, software installation, asset logs.</p></div>
+      <div class="t-item"><span class="t-date">2026 — Present</span><h3>Frontend Intern · CodeAlpha (Virtual)</h3><p>Building interactive gallery, calculator, portfolio with HTML/CSS/JS.</p></div>
+    </div>
+  </section>
+
+  <section id="education" class="section">
+    <div class="section__head"><h2>03 — Education</h2></div>
+    <div class="timeline">
+      <div class="t-item"><span class="t-date">Expected 2026</span><h3>BEng (Hons) Software Engineering</h3><p class="muted">Canterbury Christ Church University via Saegis Campus</p></div>
+      <div class="t-item"><span class="t-date">2022 — 2025 · Merit</span><h3>BTEC Level 5 HND in Computing</h3><p class="muted">ESOFT Metro Campus — Programming, Networking, Security, Web & DB</p></div>
+      <div class="t-item"><span class="t-date">2017 — 2019</span><h3>G.C.E. A/L — Bio Tech</h3><p class="muted">Mahamaya Balika Vidyalaya, Nugegoda</p></div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="section__head"><h2>04 — Projects</h2><div class="filters"><button class="chip active" data-filter="all">All</button><button class="chip" data-filter="web">Web</button><button class="chip" data-filter="network">Network</button><button class="chip" data-filter="design">UX/UI</button></div></div>
+    <div class="project-grid" id="projectGrid">
+      <!-- JS will inject -->
+    </div>
+  </section>
+
+  <section id="contact" class="section contact">
+    <div class="section__head"><h2>05 — Contact</h2><p>Open to Software Engineering & Frontend internships</p></div>
+    <div class="contact-cards">
+      <a href="mailto:shanijayarathna812@gmail.com" class="c-card"><span>Email</span><b>shanijayarathna812@gmail.com</b></a>
+      <a href="https://wa.me/94742590787" target="_blank" class="c-card"><span>WhatsApp</span><b>074 259 0787</b></a>
+      <a href="https://linkedin.com/in/shanika-jayarathna-b0729933b" target="_blank" class="c-card"><span>LinkedIn</span><b>shanika-jayarathna</b></a>
+    </div>
+    <div class="footer">Kottawa, Sri Lanka · Built with HTML/CSS/JS · SONDER inspired</div>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
